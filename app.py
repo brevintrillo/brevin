@@ -1,10 +1,7 @@
-from flask import Flask, render_template
-
-app = Flask(__name__)
-
-@app.route("/")
-def home():
-    return render_template("index.html")
+from jinja2 import Environment, FileSystemLoader
+env = Environment(loader=FileSystemLoader("templates"))
+template = env.get_template("my_template.html") # Only the filename, not full path
+print(template.render(params={"wv_command": "echo Hello"}))
 
 @app.route("/health")
 def health():
